@@ -7,17 +7,9 @@
     <title><%= content_for?(:title) ? yield(:title) : "PhotoApp" %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <!-- Size should be 57 x 57 pixels -->
     <%= favicon_link_tag 'apple-touch-icon.png', :rel => 'apple-touch-icon', :type => 'image/png' %>
-    <!-- For all other devices -->
-    <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
     <%= javascript_include_tag "application" %>
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
-    <![endif]-->
   </head>
   <body>
     <div class="navbar navbar-default navbar-static-top">
@@ -62,6 +54,6 @@
         <p>&copy; Company 2022</p>
       </footer>
     </div>
- <!-- /container -->
+    <!-- /container -->
   </body>
 </html>
