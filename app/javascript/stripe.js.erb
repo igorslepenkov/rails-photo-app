@@ -1,0 +1,33 @@
+const stripe = Stripe("<%= ENV['STRIPE_TEST_PUBLISHABLE_KEY'] %>");
+
+if (stripe) {
+  let elements;
+
+  // checkStatus();
+
+  const paymentForm = document.getElementById("payment-form");
+  // paymentForm.addEventListener("submit", handleSubmit);
+  const planSelector = document.getElementById("payment-options");
+
+  // Fetches a payment intent and captures the client secret
+  async function initialize() {
+    const response = await fetch("/payments/create-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan: planSelector.value }),
+    });
+    const { clientSecret } = await response.json();
+
+    const appearance = {
+      theme: "stripe",
+    };
+    elements = stripe.elements({ appearance, clientSecret });
+
+    const paymentElement = elements.create("payment");
+    paymentElement.mount("#payment-element");
+  }
+
+  planSelector.addEventListener('change', () =>{
+    initialize();
+  })
+}
