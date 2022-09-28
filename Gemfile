@@ -7,11 +7,13 @@ gem 'rails', '~> 7.0.4'
 
 gem 'devise'
 
-gem 'twitter-bootstrap-rails'
-
 gem 'devise-bootstrap-views'
 
+gem 'dotenv', groups: %i[development test]
+
 gem 'sprockets-rails'
+
+gem 'twitter-bootstrap-rails'
 
 gem 'puma', '~> 5.0'
 
@@ -22,6 +24,8 @@ gem 'turbo-rails'
 gem 'sass-rails'
 
 gem 'stimulus-rails'
+
+gem 'stripe'
 
 gem 'jbuilder'
 
