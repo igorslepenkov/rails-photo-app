@@ -12,15 +12,42 @@ document.addEventListener("turbo:load", () => {
     const passwordConfirmField = document.getElementById(
       "user_password_confirmation"
     );
-    const paymentField = document.getElementById('payment-input');
+    const paymentField = document.getElementById("payment-input");
+    const planSelector = document.getElementById("payment-options");
+
+    async function initialize() {
+      const response = await fetch("/payments/create-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: planSelector.value }),
+      });
+      const { clientSecret } = await response.json();
+
+      const appearance = {
+        theme: "stripe",
+      };
+      elements = stripe.elements({ appearance, clientSecret });
+
+      const paymentElement = elements.create("payment");
+      paymentElement.mount("#payment-element");
+    }
+
+    planSelector.addEventListener("change", () => {
+      initialize();
+    });
+
+    if (params.plan) {
+      planSelector.value = params.plan;
+      planSelector.dispatchEvent(new Event("change"));
+    }
 
     if (params.email && params.password && params.payment_intent) {
       emailField.value = params.email;
       passwordField.value = params.password;
       passwordConfirmField.value = params.password_confirmation;
-      paymentField.value = JSON.stringify(
-        {payment_intent: params.payment_intent}
-      );
+      paymentField.value = JSON.stringify({
+        payment_intent: params.payment_intent,
+      });
       paymentForm.submit.click();
     } else {
       let elements;
@@ -28,29 +55,8 @@ document.addEventListener("turbo:load", () => {
       checkStatus();
 
       paymentForm.addEventListener("turbo:submit-start", handleSubmit);
-      const planSelector = document.getElementById("payment-options");
 
       // Fetches a payment intent and captures the client secret
-      async function initialize() {
-        const response = await fetch("/payments/create-intent", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ plan: planSelector.value }),
-        });
-        const { clientSecret } = await response.json();
-
-        const appearance = {
-          theme: "stripe",
-        };
-        elements = stripe.elements({ appearance, clientSecret });
-
-        const paymentElement = elements.create("payment");
-        paymentElement.mount("#payment-element");
-      }
-
-      planSelector.addEventListener("change", () => {
-        initialize();
-      });
 
       async function handleSubmit(e) {
         e.detail.formSubmission.stop();
@@ -59,8 +65,10 @@ document.addEventListener("turbo:load", () => {
         const email = emailField.value;
         const password = passwordField.value;
         const passwordConfirm = passwordConfirmField.value;
-
-        const returnUrl = `http://localhost:3000/users/sign_up?email=${email}&password=${password}&password_confirmation=${passwordConfirm}`;
+        console.log(
+          `http://<%= ENV['CURRENT_DOMAIN'] %>/users/sign_up?email=${email}&password=${password}&password_confirmation=${passwordConfirm}`
+        );
+        const returnUrl = `http://<%= ENV['CURRENT_DOMAIN'] %>/users/sign_up?email=${email}&password=${password}&password_confirmation=${passwordConfirm}`;
 
         const { error } = await stripe.confirmPayment({
           elements,
