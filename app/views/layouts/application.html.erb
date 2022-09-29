@@ -9,10 +9,10 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= favicon_link_tag 'apple-touch-icon.png', :rel => 'apple-touch-icon', :type => 'image/png' %>
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", type: :module%>
     <script src="https://js.stripe.com/v3/" defer></script>
     <%= javascript_include_tag 'stripe', defer: true %>
-    <%= javascript_importmap_tags %>
   </head>
   <body>
     <div class="app container">
@@ -42,7 +42,7 @@
                               destroy_user_session_path,
                               class: 'btn btn-xs btn-danger', 
                               title: 'Logout', 
-                              method: :delete) %>
+                              data:{turbo_method: :delete}) %>
                 </li>
               <% else %>
                 <li class="col-md-4 pull-right">

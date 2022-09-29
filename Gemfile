@@ -3,13 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 gem 'rails', '~> 7.0.4'
 
 gem 'devise'
 
 gem 'devise-bootstrap-views'
-
-gem 'dotenv', groups: %i[development test]
 
 gem 'sprockets-rails'
 
