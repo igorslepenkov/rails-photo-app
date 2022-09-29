@@ -15,6 +15,8 @@ document.addEventListener("turbo:load", () => {
     const paymentField = document.getElementById("payment-input");
     const planSelector = document.getElementById("payment-options");
 
+    let elements;
+
     async function initialize() {
       const response = await fetch("/payments/create-intent", {
         method: "POST",
@@ -50,8 +52,6 @@ document.addEventListener("turbo:load", () => {
       });
       paymentForm.submit.click();
     } else {
-      let elements;
-
       checkStatus();
 
       paymentForm.addEventListener("turbo:submit-start", handleSubmit);
@@ -65,9 +65,6 @@ document.addEventListener("turbo:load", () => {
         const email = emailField.value;
         const password = passwordField.value;
         const passwordConfirm = passwordConfirmField.value;
-        console.log(
-          `http://<%= ENV['CURRENT_DOMAIN'] %>/users/sign_up?email=${email}&password=${password}&password_confirmation=${passwordConfirm}`
-        );
         const returnUrl = `http://<%= ENV['CURRENT_DOMAIN'] %>/users/sign_up?email=${email}&password=${password}&password_confirmation=${passwordConfirm}`;
 
         const { error } = await stripe.confirmPayment({

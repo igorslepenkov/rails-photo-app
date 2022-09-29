@@ -18,14 +18,14 @@ class PaymentsController < ApplicationController
       amaze: 20
     }
 
-    (plans_prices[_plan.to_sym].to_f * 4.94).round.to_i
+    plans_prices[_plan.to_sym]
   end
 
   def create_intent
     plan_amount = calculate_order_amount(params.require('plan'))
     payment_intent = Stripe::PaymentIntent.create(
       amount: plan_amount * 100,
-      currency: 'pln',
+      currency: 'usd',
       automatic_payment_methods: {
         enabled: true
       }
