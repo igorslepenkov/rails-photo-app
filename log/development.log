@@ -10059,3 +10059,28 @@ Processing by WelcomeController#index as TURBO_STREAM
 Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 1902)
 
 
+Started GET "/" for ::1 at 2022-09-30 13:27:30 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1234)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 4795)
+Completed 200 OK in 14ms (Views: 10.5ms | ActiveRecord: 0.0ms | Allocations: 8492)
+
+
+Started GET "/images" for ::1 at 2022-09-30 13:27:35 +0300
+Processing by ImagesController#index as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms | Allocations: 1346)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-30 13:27:35 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 953)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4.6ms | Allocations: 4024)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | Allocations: 5250)
+Completed 200 OK in 16ms (Views: 6.7ms | ActiveRecord: 0.5ms | Allocations: 14442)
+
+
