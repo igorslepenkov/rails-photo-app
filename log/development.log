@@ -6677,3 +6677,574 @@ Processing by WelcomeController#index as HTML
 Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.0ms | Allocations: 1590)
 
 
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateImages (20220930072849)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "images" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "picture" varchar, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_19cd822056"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_images_on_user_id" ON "images" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220930072849"]]
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2022-09-30 10:32:09 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1256)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 4818)
+Completed 200 OK in 17ms (Views: 13.3ms | ActiveRecord: 0.0ms | Allocations: 8517)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-30 10:32:18 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 3.6ms | Allocations: 953)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.3ms | Allocations: 5846)
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 7012)
+Completed 200 OK in 30ms (Views: 15.5ms | ActiveRecord: 0.8ms | Allocations: 16277)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-30 10:32:19 +0300
+Processing by RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 250)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 7.4ms | Allocations: 2196)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 3373)
+Completed 200 OK in 20ms (Views: 16.8ms | ActiveRecord: 0.0ms | Allocations: 4967)
+
+
+Started POST "/payments/create-intent" for ::1 at 2022-09-30 10:32:31 +0300
+Processing by PaymentsController#create_intent as */*
+  Parameters: {"plan"=>"premium", "payment"=>{}}
+Completed 200 OK in 679ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 3852)
+
+
+Started GET "/users/sign_up?email=slepenkov.niI@yandex.by&password=[FILTERED]&password_confirmation=[FILTERED]&payment_intent=pi_3Lndi0GfOPdEBq6T1N3wNFxt&payment_intent_client_secret=[FILTERED]&redirect_status=succeeded" for ::1 at 2022-09-30 10:33:04 +0300
+Processing by RegistrationsController#new as HTML
+  Parameters: {"email"=>"slepenkov.niI@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "payment_intent"=>"pi_3Lndi0GfOPdEBq6T1N3wNFxt", "payment_intent_client_secret"=>"[FILTERED]", "redirect_status"=>"succeeded"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.0ms | Allocations: 170)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 8.5ms | Allocations: 1426)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 2485)
+Completed 200 OK in 16ms (Views: 13.5ms | ActiveRecord: 0.0ms | Allocations: 3184)
+
+
+Started POST "/users" for ::1 at 2022-09-30 10:33:04 +0300
+Processing by RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.niI@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "payment"=>"{\"payment_intent\":\"pi_3Lndi0GfOPdEBq6T1N3wNFxt\"}", "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 170)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 3.7ms | Allocations: 2500)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 3604)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/registrations_controller.rb:5:in `create'
+Completed 200 OK in 216ms (Views: 5.2ms | ActiveRecord: 0.2ms | Allocations: 10932)
+
+
+Started GET "/users/sign_up?email=slepenkov.niI@yandex.by&password=[FILTERED]&password_confirmation=[FILTERED]&payment_intent=pi_3Lndi0GfOPdEBq6T1N3wNFxt&payment_intent_client_secret=[FILTERED]&redirect_status=succeeded" for ::1 at 2022-09-30 10:33:36 +0300
+Processing by RegistrationsController#new as HTML
+  Parameters: {"email"=>"slepenkov.niI@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "payment_intent"=>"pi_3Lndi0GfOPdEBq6T1N3wNFxt", "payment_intent_client_secret"=>"[FILTERED]", "redirect_status"=>"succeeded"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 168)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1310)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 2335)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.0ms | Allocations: 2992)
+
+
+Started POST "/users" for ::1 at 2022-09-30 10:33:36 +0300
+Processing by RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.niI@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "payment"=>"{\"payment_intent\":\"pi_3Lndi0GfOPdEBq6T1N3wNFxt\"}", "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 168)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 2247)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 3287)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/registrations_controller.rb:5:in `create'
+Completed 200 OK in 199ms (Views: 4.0ms | ActiveRecord: 0.2ms | Allocations: 6997)
+
+
+Started POST "/users" for ::1 at 2022-09-30 10:33:58 +0300
+Processing by RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.niI@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "payment"=>"{\"payment_intent\":\"pi_3Lndi0GfOPdEBq6T1N3wNFxt\"}", "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 168)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.7ms | Allocations: 2247)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 3288)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/registrations_controller.rb:5:in `create'
+Completed 200 OK in 197ms (Views: 4.2ms | ActiveRecord: 0.3ms | Allocations: 6853)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2022-09-30 10:37:25 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 1262)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | Allocations: 4824)
+Completed 200 OK in 17ms (Views: 13.1ms | ActiveRecord: 0.0ms | Allocations: 8523)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-30 10:37:26 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.4ms | Allocations: 953)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 8.4ms | Allocations: 5709)
+  Rendered layout layouts/application.html.erb (Duration: 9.5ms | Allocations: 6875)
+Completed 200 OK in 31ms (Views: 11.3ms | ActiveRecord: 1.0ms | Allocations: 16146)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-30 10:37:28 +0300
+Processing by RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.3ms | Allocations: 251)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 14.1ms | Allocations: 2202)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | Allocations: 3379)
+Completed 200 OK in 27ms (Views: 23.5ms | ActiveRecord: 0.0ms | Allocations: 4961)
+
+
+Started POST "/payments/create-intent" for ::1 at 2022-09-30 10:37:44 +0300
+Processing by PaymentsController#create_intent as */*
+  Parameters: {"plan"=>"premium", "payment"=>{}}
+Completed 200 OK in 634ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 3850)
+
+
+Started GET "/users/sign_up?email=slepenkov.nii@yandex.by&password=[FILTERED]&password_confirmation=[FILTERED]&payment_intent=pi_3Lndn3GfOPdEBq6T1wdZ81es&payment_intent_client_secret=[FILTERED]&redirect_status=succeeded" for ::1 at 2022-09-30 10:37:58 +0300
+Processing by RegistrationsController#new as HTML
+  Parameters: {"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "payment_intent"=>"pi_3Lndn3GfOPdEBq6T1wdZ81es", "payment_intent_client_secret"=>"[FILTERED]", "redirect_status"=>"succeeded"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 170)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1426)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2486)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.0ms | Allocations: 3181)
+
+
+Started POST "/users" for ::1 at 2022-09-30 10:37:58 +0300
+Processing by RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "payment"=>"{\"payment_intent\":\"pi_3Lndn3GfOPdEBq6T1wdZ81es\"}", "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 170)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 3.6ms | Allocations: 2500)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 3604)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/registrations_controller.rb:5:in `create'
+Completed 200 OK in 215ms (Views: 5.4ms | ActiveRecord: 0.2ms | Allocations: 10922)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 12]]
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPayment Load (0.1ms)[0m  [1m[34mSELECT "payments".* FROM "payments"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPayment Destroy (0.2ms)[0m  [1m[31mDELETE FROM "payments" WHERE "payments"."id" = ?[0m  [["id", 5]]
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/users/sign_up?email=slepenkov.nii@yandex.by&password=[FILTERED]&password_confirmation=[FILTERED]&payment_intent=pi_3Lndn3GfOPdEBq6T1wdZ81es&payment_intent_client_secret=[FILTERED]&redirect_status=succeeded" for ::1 at 2022-09-30 10:40:14 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RegistrationsController#new as HTML
+  Parameters: {"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "payment_intent"=>"pi_3Lndn3GfOPdEBq6T1wdZ81es", "payment_intent_client_secret"=>"[FILTERED]", "redirect_status"=>"succeeded"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 834)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 6.6ms | Allocations: 5835)
+  Rendered layout layouts/application.html.erb (Duration: 9.3ms | Allocations: 9397)
+Completed 200 OK in 24ms (Views: 12.0ms | ActiveRecord: 0.4ms | Allocations: 21607)
+
+
+Started POST "/users" for ::1 at 2022-09-30 10:40:15 +0300
+Processing by RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "payment"=>"{\"payment_intent\":\"pi_3Lndn3GfOPdEBq6T1wdZ81es\"}", "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "slepenkov.nii@yandex.by"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-09-30 07:40:15.572441"], ["unconfirmed_email", nil], ["created_at", "2022-09-30 07:40:15.572345"], ["updated_at", "2022-09-30 07:40:15.572345"]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:12:in `block in create'
+  [1m[36mPayment Create (0.1ms)[0m  [1m[32mINSERT INTO "payments" ("email", "token", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "slepenkov.nii@yandex.by"], ["token", "[FILTERED]"], ["user_id", 13], ["created_at", "2022-09-30 07:40:15.581675"], ["updated_at", "2022-09-30 07:40:15.581675"]]
+  ↳ app/controllers/registrations_controller.rb:15:in `block in create'
+Redirected to http://localhost:3000/
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/registrations_controller.rb:5:in `create'
+  Rendering /usr/share/rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.6ms | Allocations: 382)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2.7ms
+Delivered mail 63369d5f932af_4a1a459c5784f@wsd-078-74a.mail (1334.4ms)
+Date: Fri, 30 Sep 2022 10:40:15 +0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: slepenkov.nii@yandex.by
+Message-ID: <63369d5f932af_4a1a459c5784f@wsd-078-74a.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome slepenkov.nii@yandex.by!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=jE-dzVVxTmnhQpsdhFnK">Confirm my account</a></p>
+
+Completed 302 Found in 1558ms (ActiveRecord: 4.4ms | Allocations: 34085)
+
+
+Started GET "/" for ::1 at 2022-09-30 10:40:16 +0300
+Processing by WelcomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 761)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 1923)
+Completed 200 OK in 12ms (Views: 9.9ms | ActiveRecord: 0.0ms | Allocations: 2881)
+
+
+Started GET "/users/confirmation?confirmation_token=[FILTERED]" for ::1 at 2022-09-30 10:40:32 +0300
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."confirmation_token" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["confirmation_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "confirmed_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["confirmed_at", "2022-09-30 07:40:32.207478"], ["updated_at", "2022-09-30 07:40:32.208162"], ["id", 13]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 22ms (ActiveRecord: 4.9ms | Allocations: 5917)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-30 10:40:32 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 406)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2494)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 3742)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.0ms | Allocations: 5184)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-30 10:40:36 +0300
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 191ms (ActiveRecord: 0.1ms | Allocations: 2850)
+
+
+Started GET "/" for ::1 at 2022-09-30 10:40:36 +0300
+Processing by WelcomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/welcome/index.html.erb:1
+  Rendered welcome/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1001)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 2079)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 2356)
+
+
+Started GET "/images" for ::1 at 2022-09-30 10:40:59 +0300
+Processing by ImagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering images/index.html.erb within layouts/application
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images"[0m
+  ↳ app/views/images/index.html.erb:17
+  Rendered images/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2008)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 3231)
+Completed 200 OK in 14ms (Views: 6.7ms | ActiveRecord: 0.3ms | Allocations: 6439)
+
+
+Started GET "/images/new" for ::1 at 2022-09-30 10:41:14 +0300
+Processing by ImagesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering images/new.html.erb within layouts/application
+  Rendered images/_form.html.erb (Duration: 2.3ms | Allocations: 1961)
+  Rendered images/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2359)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 3413)
+Completed 200 OK in 28ms (Views: 5.5ms | ActiveRecord: 1.8ms | Allocations: 8056)
+
+
+Started GET "/images/new" for ::1 at 2022-09-30 10:45:33 +0300
+Processing by ImagesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 0.6ms | Allocations: 8010)
+
+
+  
+NameError (uninitialized constant Image::PictureUploader
+
+  mount_uploader :picture, PictureUploader
+                           ^^^^^^^^^^^^^^^):
+  
+app/models/image.rb:3:in `<class:Image>'
+app/models/image.rb:1:in `<main>'
+app/controllers/images_controller.rb:15:in `new'
+Started GET "/images/new" for ::1 at 2022-09-30 10:46:16 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering images/new.html.erb within layouts/application
+  Rendered images/_form.html.erb (Duration: 7.3ms | Allocations: 2829)
+  Rendered images/new.html.erb within layouts/application (Duration: 9.6ms | Allocations: 4988)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 8583)
+Completed 200 OK in 41ms (Views: 14.1ms | ActiveRecord: 0.9ms | Allocations: 29160)
+
+
+Started POST "/images" for ::1 at 2022-09-30 10:49:30 +0300
+Processing by ImagesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "image"=>{"name"=>"Test image", "picture"=>#<ActionDispatch::Http::UploadedFile:0x00007fcf91a65f28 @tempfile=#<Tempfile:/tmp/RackMultipart20220930-20078-8s3jti.jpeg>, @original_filename="1_0xUiJ0naaeQheGusKboMGQ.jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[picture]\"; filename=\"1_0xUiJ0naaeQheGusKboMGQ.jpeg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Image"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering images/new.html.erb within layouts/application
+  Rendered images/_form.html.erb (Duration: 1.6ms | Allocations: 1611)
+  Rendered images/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1831)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 2922)
+Completed 422 Unprocessable Entity in 9ms (Views: 3.4ms | ActiveRecord: 0.1ms | Allocations: 7900)
+
+
+Started GET "/images/new" for ::1 at 2022-09-30 10:51:02 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ImagesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering images/new.html.erb within layouts/application
+  Rendered images/_form.html.erb (Duration: 4.3ms | Allocations: 2753)
+  Rendered images/new.html.erb within layouts/application (Duration: 7.5ms | Allocations: 4912)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | Allocations: 8507)
+Completed 200 OK in 40ms (Views: 12.8ms | ActiveRecord: 0.9ms | Allocations: 29004)
+
+
+Started POST "/images" for ::1 at 2022-09-30 10:51:09 +0300
+Processing by ImagesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "image"=>{"name"=>"Test image", "picture"=>#<ActionDispatch::Http::UploadedFile:0x00007fd5bef57a80 @tempfile=#<Tempfile:/tmp/RackMultipart20220930-20914-2vvrio.jpeg>, @original_filename="1_0xUiJ0naaeQheGusKboMGQ.jpeg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"image[picture]\"; filename=\"1_0xUiJ0naaeQheGusKboMGQ.jpeg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Create Image"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/images_controller.rb:26:in `block in create'
+  [1m[36mImage Create (0.3ms)[0m  [1m[32mINSERT INTO "images" ("name", "picture", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Test image"], ["picture", "1_0xUiJ0naaeQheGusKboMGQ.jpeg"], ["user_id", 13], ["created_at", "2022-09-30 07:51:09.780206"], ["updated_at", "2022-09-30 07:51:09.780206"]]
+  ↳ app/controllers/images_controller.rb:26:in `block in create'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/images_controller.rb:26:in `block in create'
+Redirected to http://localhost:3000/images/1
+Completed 302 Found in 14ms (ActiveRecord: 4.9ms | Allocations: 7504)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:51:09 +0300
+Processing by ImagesController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1195)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 2359)
+Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 5504)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:52:45 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1193)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 2868)
+Completed 200 OK in 8ms (Views: 5.1ms | ActiveRecord: 0.1ms | Allocations: 5566)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:53:18 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1187)
+  Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 2862)
+Completed 200 OK in 22ms (Views: 11.2ms | ActiveRecord: 0.5ms | Allocations: 5753)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:53:43 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1210)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 2884)
+Completed 200 OK in 22ms (Views: 9.9ms | ActiveRecord: 0.6ms | Allocations: 5750)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:53:45 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 3.9ms | Allocations: 722)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 1768)
+Completed 200 OK in 18ms (Views: 8.3ms | ActiveRecord: 0.5ms | Allocations: 3978)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:54:18 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1193)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 2867)
+Completed 200 OK in 27ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 5572)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:54:21 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 3.0ms | Allocations: 702)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 1748)
+Completed 200 OK in 18ms (Views: 8.2ms | ActiveRecord: 0.5ms | Allocations: 3975)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:54:28 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.3ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1191)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 2866)
+Completed 200 OK in 26ms (Views: 13.2ms | ActiveRecord: 0.6ms | Allocations: 5556)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:54:35 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1209)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 2883)
+Completed 200 OK in 10ms (Views: 6.5ms | ActiveRecord: 0.1ms | Allocations: 5761)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:54:49 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 2882)
+Completed 200 OK in 19ms (Views: 12.1ms | ActiveRecord: 0.3ms | Allocations: 5769)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:54:56 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1209)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 2883)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 0.2ms | Allocations: 5740)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:55:25 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.2ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1209)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 2883)
+Completed 200 OK in 23ms (Views: 11.8ms | ActiveRecord: 0.5ms | Allocations: 5761)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:55:30 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1212)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 2886)
+Completed 200 OK in 8ms (Views: 5.2ms | ActiveRecord: 0.1ms | Allocations: 5746)
+
+
+Started GET "/images/1" for ::1 at 2022-09-30 10:55:36 +0300
+Processing by ImagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mImage Load (0.1ms)[0m  [1m[34mSELECT "images".* FROM "images" WHERE "images"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/images_controller.rb:63:in `set_image'
+  Rendering layout layouts/application.html.erb
+  Rendering images/show.html.erb within layouts/application
+  Rendered images/show.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 2882)
+Completed 200 OK in 15ms (Views: 9.8ms | ActiveRecord: 0.2ms | Allocations: 5770)
+
+
