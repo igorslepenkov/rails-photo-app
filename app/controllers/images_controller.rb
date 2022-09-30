@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: %i[show edit update destroy]
+  skip_before_action :set_image, only: [:my_images]
 
   # GET /images or /images.json
   def index
@@ -54,6 +55,10 @@ class ImagesController < ApplicationController
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def my_images
+    @images = Image.where(user_id: current_user.id)
   end
 
   private

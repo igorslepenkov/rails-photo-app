@@ -1,5 +1,8 @@
 <% if current_user %>
-  <h3>Welcome: <%= current_user.email %></h3>
+  <div class="bg-success">
+    <h3>Welcome: <%= current_user.email %></h3>
+    <p>We are glad to have you in our PhotoApp!</p>
+  </div>
 <% else %>
   <div class="jumbotron">
     <h2>Welcome to the Photo Management App!</h2>

@@ -23,7 +23,7 @@
   <div class="form-group">
     <%= f.label :picture, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png', :class => 'form-control' %>
+      <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png'%>
     </div>
     <%=f.error_span(:picture) %>
   </div>
@@ -35,3 +35,12 @@
     </div>
   </div>
 <% end %>
+<script>
+  const image = document.getElementById('image_picture');
+  image.addEventListener('change', () =>{
+    const sizeInMegabytes = this.files[0].size/1024/1024;
+    if(sizeInMegabytes > 5) {
+      alert('Maximum file size is 5MB');
+    }
+  })
+</script>
