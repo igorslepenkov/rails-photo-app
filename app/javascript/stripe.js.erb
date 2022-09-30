@@ -65,8 +65,9 @@ document.addEventListener("turbo:load", () => {
         const email = emailField.value;
         const password = passwordField.value;
         const passwordConfirm = passwordConfirmField.value;
+        console.log('<%= ENV['CURRENT_DOMAIN'] %>')
         const returnUrl = `http://<%= ENV['CURRENT_DOMAIN'] %>/users/sign_up?email=${email}&password=${password}&password_confirmation=${passwordConfirm}`;
-
+        console.log('<%= ENV['CURRENT_DOMAIN'] %>')
         const { error } = await stripe.confirmPayment({
           elements,
           confirmParams: {

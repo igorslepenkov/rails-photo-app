@@ -6498,3 +6498,182 @@ Processing by WelcomeController#index as TURBO_STREAM
 Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 1744)
 
 
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 11]]
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPayment Load (0.1ms)[0m  [1m[34mSELECT "payments".* FROM "payments"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPayment Destroy (0.1ms)[0m  [1m[31mDELETE FROM "payments" WHERE "payments"."id" = ?[0m  [["id", 4]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2022-09-30 09:57:43 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1092)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 4687)
+Completed 200 OK in 14ms (Views: 9.2ms | ActiveRecord: 0.0ms | Allocations: 8370)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-30 09:57:45 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 2.1ms | Allocations: 953)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 14.6ms | Allocations: 5663)
+  Rendered layout layouts/application.html.erb (Duration: 16.1ms | Allocations: 6829)
+Completed 200 OK in 44ms (Views: 17.8ms | ActiveRecord: 1.6ms | Allocations: 16124)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-30 09:57:47 +0300
+Processing by RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.7ms | Allocations: 250)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 5.0ms | Allocations: 2196)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 3373)
+Completed 200 OK in 11ms (Views: 9.5ms | ActiveRecord: 0.0ms | Allocations: 4951)
+
+
+Started POST "/payments/create-intent" for ::1 at 2022-09-30 09:58:04 +0300
+Processing by PaymentsController#create_intent as */*
+  Parameters: {"plan"=>"premium", "payment"=>{}}
+Completed 200 OK in 641ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 3868)
+
+
+Started GET "/users/sign_up?email=slepenkov.nii@yandex.by&password=[FILTERED]&password_confirmation=[FILTERED]&payment_intent=pi_3LndAfGfOPdEBq6T1F7VN3Ly&payment_intent_client_secret=[FILTERED]&redirect_status=succeeded" for ::1 at 2022-09-30 09:58:19 +0300
+Processing by RegistrationsController#new as HTML
+  Parameters: {"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "payment_intent"=>"pi_3LndAfGfOPdEBq6T1F7VN3Ly", "payment_intent_client_secret"=>"[FILTERED]", "redirect_status"=>"succeeded"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 170)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1426)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 2486)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.0ms | Allocations: 3205)
+
+
+Started POST "/users" for ::1 at 2022-09-30 09:58:19 +0300
+Processing by RegistrationsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "payment"=>"{\"payment_intent\":\"pi_3LndAfGfOPdEBq6T1F7VN3Ly\"}", "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "slepenkov.nii@yandex.by"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-09-30 06:58:20.172353"], ["unconfirmed_email", nil], ["created_at", "2022-09-30 06:58:20.172248"], ["updated_at", "2022-09-30 06:58:20.172248"]]
+  ↳ app/controllers/registrations_controller.rb:6:in `block in create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:12:in `block in create'
+  [1m[36mPayment Create (0.1ms)[0m  [1m[32mINSERT INTO "payments" ("email", "token", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "slepenkov.nii@yandex.by"], ["token", "[FILTERED]"], ["user_id", 12], ["created_at", "2022-09-30 06:58:20.181424"], ["updated_at", "2022-09-30 06:58:20.181424"]]
+  ↳ app/controllers/registrations_controller.rb:15:in `block in create'
+Redirected to http://localhost:3000/
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/registrations_controller.rb:5:in `create'
+  Rendering /usr/share/rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/mailer/confirmation_instructions.html.erb
+  Rendered /usr/share/rvm/gems/ruby-3.1.2/gems/devise-4.8.1/app/views/devise/mailer/confirmation_instructions.html.erb (Duration: 0.7ms | Allocations: 382)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 3.0ms
+Delivered mail 6336938c357c7_1ac044d415345@wsd-078-74a.mail (1353.2ms)
+Date: Fri, 30 Sep 2022 09:58:20 +0300
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: slepenkov.nii@yandex.by
+Message-ID: <6336938c357c7_1ac044d415345@wsd-078-74a.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome slepenkov.nii@yandex.by!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=TMF7x8osy6g3spxCZH45">Confirm my account</a></p>
+
+Completed 302 Found in 1595ms (ActiveRecord: 4.0ms | Allocations: 32353)
+
+
+Started GET "/" for ::1 at 2022-09-30 09:58:21 +0300
+Processing by WelcomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 411)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 1459)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.0ms | Allocations: 1825)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-30 09:58:31 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 234)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1422)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 2438)
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.0ms | Allocations: 3066)
+
+
+Started GET "/users/confirmation?confirmation_token=[FILTERED]" for ::1 at 2022-09-30 09:58:44 +0300
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."confirmation_token" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["confirmation_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "confirmed_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["confirmed_at", "2022-09-30 06:58:44.387429"], ["updated_at", "2022-09-30 06:58:44.387834"], ["id", 12]]
+  [1m[36mTRANSACTION (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 16ms (ActiveRecord: 6.0ms | Allocations: 5843)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-30 09:58:44 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 236)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1408)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 2530)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms | Allocations: 3243)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-30 09:58:49 +0300
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"slepenkov.nii@yandex.by", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "slepenkov.nii@yandex.by"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 189ms (ActiveRecord: 0.2ms | Allocations: 2593)
+
+
+Started GET "/" for ::1 at 2022-09-30 09:58:49 +0300
+Processing by WelcomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/views/welcome/index.html.erb:1
+  Rendered welcome/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 979)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 2054)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.1ms | Allocations: 2325)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2022-09-30 09:58:51 +0300
+Processing by Devise::SessionsController#destroy as TURBO_STREAM
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 32ms (ActiveRecord: 0.3ms | Allocations: 9560)
+
+
+Started GET "/" for ::1 at 2022-09-30 09:58:51 +0300
+Processing by WelcomeController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 389)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1442)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 1756)
+
+
+Started GET "/" for ::1 at 2022-09-30 09:59:13 +0300
+Processing by WelcomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (Duration: 0.5ms | Allocations: 321)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | Allocations: 1325)
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.0ms | Allocations: 1590)
+
+
