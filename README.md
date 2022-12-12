@@ -9,7 +9,7 @@
 
   <h3 align="center">Rails Photo App</h3>
 
-  <p align="center">Educational Photo Uploader Project/p>
+  <p align="center">Educational Photo Uploader Project</p>
 </div>
 
 ### About Project
